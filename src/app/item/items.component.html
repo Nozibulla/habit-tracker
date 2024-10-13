@@ -1,0 +1,16 @@
+<ActionBar title="Todo List"></ActionBar>
+
+<GridLayout rows="auto, *">
+  <StackLayout row="0" class="p-4">
+    <TextField hint="Enter new todo item" (returnPress)="addItem($event)" class="input"></TextField>
+  </StackLayout>
+  <ListView [items]="items" row="1">
+    <ng-template let-item="item">
+      <GridLayout columns="auto, *, auto" class="p-4" (tap)="toggleCompletion(item.id)">
+        <Label col="0" [text]="item.completed ? '✓' : '☐'" class="text-2xl mr-2"></Label>
+        <Label col="1" [text]="item.title" [class.line-through]="item.completed" class="text-lg"></Label>
+        <Label col="2" text=">" class="text-lg text-gray-500" [nsRouterLink]="['/item', item.id]"></Label>
+      </GridLayout>
+    </ng-template>
+  </ListView>
+</GridLayout>

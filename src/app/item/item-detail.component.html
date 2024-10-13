@@ -1,0 +1,7 @@
+<ActionBar title="Todo Details"></ActionBar>
+
+<FlexboxLayout flexDirection="column" class="p-4">
+  <Label class="text-3xl" [text]="item.title"></Label>
+  <Label class="text-xl mt-4" [text]="'Status: ' + (item.completed ? 'Completed' : 'Pending')"></Label>
+  <Button text="Toggle Completion" (tap)="toggleCompletion()" class="mt-4 p-4 bg-blue-500 text-white"></Button>
+</FlexboxLayout>

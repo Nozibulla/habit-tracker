@@ -1,0 +1,44 @@
+<ActionBar [title]="habit?.name || 'Habit Detail'">
+  <NavigationButton text="Back" android.systemIcon="ic_menu_back" (tap)="goBack()"></NavigationButton>
+  <ActionItem ios.position="right" android.position="actionBar" [nsRouterLink]="['/habit', habit.id, 'report']">
+    <Label text="Report"></Label>
+  </ActionItem>
+</ActionBar>
+
+<ScrollView>
+  <StackLayout class="p-4">
+    <GridLayout columns="auto, *, auto" class="mb-4">
+      <Button col="0" text="<" (tap)="previousMonth()" class="btn btn-outline"></Button>
+      <Label col="1" [text]="currentMonthYear" class="text-center font-bold text-lg"></Label>
+      <Button col="2" text=">" (tap)="nextMonth()" class="btn btn-outline"></Button>
+    </GridLayout>
+
+    <FlexboxLayout justifyContent="space-around" class="mb-4">
+      <Button (tap)="setColor('green')" class="btn btn-rounded-lg" [text]="colorCounts.green" style="background-color: #4CAF50; color: white; width: 60; height: 60; font-size: 18;"></Button>
+      <Button (tap)="setColor('yellow')" class="btn btn-rounded-lg" [text]="colorCounts.yellow" style="background-color: #FFEB3B; color: black; width: 60; height: 60; font-size: 18;"></Button>
+      <Button (tap)="setColor('red')" class="btn btn-rounded-lg" [text]="colorCounts.red" style="background-color: #F44336; color: white; width: 60; height: 60; font-size: 18;"></Button>
+    </FlexboxLayout>
+
+    <GridLayout [rows]="calendarRows" [columns]="calendarColumns" class="calendar">
+      <Label *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']"
+             [col]="$index"
+             [text]="day"
+             class="text-center p-2 font-bold">
+      </Label>
+      <Label *ngFor="let day of calendarDays; let i = index"
+             [row]="getRowForIndex(i) + 1" [col]="getColForIndex(i)"
+             [text]="day.date"
+             (tap)="selectDate(day)"
+             [class.font-bold]="day.isCurrentMonth"
+             [class.text-muted]="!day.isCurrentMonth"
+             [ngClass]="{
+               'bg-success': day.status === 'green',
+               'bg-warning': day.status === 'yellow',
+               'bg-danger': day.status === 'red',
+               'selected': day.isSelected
+             }"
+             class="text-center calendar-day">
+      </Label>
+    </GridLayout>
+  </StackLayout>
+</ScrollView>

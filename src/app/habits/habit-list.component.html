@@ -1,0 +1,17 @@
+<ActionBar title="Habit Tracker"></ActionBar>
+
+<StackLayout class="p-4">
+  <GridLayout rows="auto, auto" columns="*, auto" class="mb-4">
+    <TextField row="0" col="0" [(ngModel)]="newHabitName" hint="Enter new habit" class="input input-rounded p-2"></TextField>
+    <Button row="0" col="1" text="Add" (tap)="addHabit()" class="btn btn-primary"></Button>
+  </GridLayout>
+  
+  <ListView [items]="habits" class="list-group">
+    <ng-template let-habit="item">
+      <GridLayout columns="*, auto" class="list-group-item p-4" [nsRouterLink]="['/habit', habit.id]">
+        <Label [text]="habit.name" class="h3"></Label>
+        <Label col="1" text=">" class="text-right h3"></Label>
+      </GridLayout>
+    </ng-template>
+  </ListView>
+</StackLayout>

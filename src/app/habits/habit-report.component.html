@@ -1,0 +1,13 @@
+<ActionBar [title]="habit?.name + ' Report'" class="action-bar">
+  <NavigationButton text="Back" android.systemIcon="ic_menu_back"></NavigationButton>
+</ActionBar>
+
+<StackLayout class="p-4">
+  <Label text="Habit Report" class="h2 text-center"></Label>
+  <StackLayout class="m-4">
+    <Label [text]="'Total Days: ' + report.total" class="body"></Label>
+    <Label [text]="'Green Days: ' + report.green" class="body text-success"></Label>
+    <Label [text]="'Yellow Days: ' + report.yellow" class="body text-warning"></Label>
+    <Label [text]="'Red Days: ' + report.red" class="body text-danger"></Label>
+  </StackLayout>
+</StackLayout>

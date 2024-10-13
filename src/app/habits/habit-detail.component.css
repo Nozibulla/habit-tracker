@@ -1,0 +1,31 @@
+.calendar {
+  width: 100%;
+}
+
+.calendar-day {
+  border-radius: 20;
+  width: 40;
+  height: 40;
+  font-size: 14;
+  vertical-align: middle;
+}
+
+.selected {
+  border-width: 2;
+  border-color: #007AFF;
+}
+
+.bg-success {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.bg-warning {
+  background-color: #FFEB3B;
+  color: black;
+}
+
+.bg-danger {
+  background-color: #F44336;
+  color: white;
+}
